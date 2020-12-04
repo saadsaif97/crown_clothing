@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { HomePage } from './home-page';
-import App from './App';
+import { HomePage } from './pages/home-page/home-page.component';
 
 ReactDOM.render(
   <React.StrictMode>
