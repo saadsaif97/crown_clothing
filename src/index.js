@@ -9,10 +9,12 @@ import Jackets from './pages/shop/jackets/jackets-page.component'
 import Men from './pages/shop/men/men-page.component'
 import Women from './pages/shop/women/women-page.component'
 import Sneakers from './pages/shop/sneakers/sneakers-page.component'
+import Header from './components/header/header.component'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact={true} path='/' component={HomePage} />
         <Route exact={true} path='/shop' component={Shop} />
