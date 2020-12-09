@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-const Hats = ({ history }) => {
+const Hats = ({ history, match }) => {
   return (
     <div>
       <h1>HATS</h1>
