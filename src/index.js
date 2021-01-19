@@ -10,6 +10,7 @@ import Men from './pages/shop/men/men-page.component'
 import Women from './pages/shop/women/women-page.component'
 import Sneakers from './pages/shop/sneakers/sneakers-page.component'
 import Header from './components/header/header.component'
+import SignInSignUp from './pages/signin-and-signup/signin-and-signup.component'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Switch>
         <Route exact={true} path='/' component={HomePage} />
         <Route exact={true} path='/shop' component={Shop} />
+        <Route exact={true} path='/signin' component={SignInSignUp} />
         <Route exact={true} path='/shop/hats' component={Hats} />
         <Route exact={true} path='/shop/jackets' component={Jackets} />
         <Route exact={true} path='/shop/mens' component={Men} />
