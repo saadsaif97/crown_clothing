@@ -11,22 +11,48 @@ import Women from './pages/shop/women/women-page.component'
 import Sneakers from './pages/shop/sneakers/sneakers-page.component'
 import Header from './components/header/header.component'
 import SignInSignUp from './pages/signin-and-signup/signin-and-signup.component'
+import { auth } from './firebase/firebase.utils'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route exact={true} path='/' component={HomePage} />
-        <Route exact={true} path='/shop' component={Shop} />
-        <Route exact={true} path='/signin' component={SignInSignUp} />
-        <Route exact={true} path='/shop/hats' component={Hats} />
-        <Route exact={true} path='/shop/jackets' component={Jackets} />
-        <Route exact={true} path='/shop/mens' component={Men} />
-        <Route exact={true} path='/shop/womens' component={Women} />
-        <Route exact={true} path='/shop/sneakers' component={Sneakers} />
-      </Switch>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentUser: null,
+    }
+  }
+
+  unSubscribeFromAuth = null
+
+  componentDidMount() {
+    auth.onAuthStateChanged(async (user) => {
+      this.unSubscribeFromAuth = await this.setState({ currentUser: user })
+      console.log(this.state.currentUser)
+    })
+  }
+
+  // componentWillUnmount() {
+  //   this.unSubscribeFromAuth()
+  // }
+
+  render() {
+    return (
+      <React.StrictMode>
+        <BrowserRouter>
+          <Header currentUser={this.state.currentUser} />
+          <Switch>
+            <Route exact={true} path='/' component={HomePage} />
+            <Route exact={true} path='/shop' component={Shop} />
+            <Route exact={true} path='/signin' component={SignInSignUp} />
+            <Route exact={true} path='/shop/hats' component={Hats} />
+            <Route exact={true} path='/shop/jackets' component={Jackets} />
+            <Route exact={true} path='/shop/mens' component={Men} />
+            <Route exact={true} path='/shop/womens' component={Women} />
+            <Route exact={true} path='/shop/sneakers' component={Sneakers} />
+          </Switch>
+        </BrowserRouter>
+      </React.StrictMode>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
